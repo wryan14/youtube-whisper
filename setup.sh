@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Audio Whisper Setup Script for Mac/Linux
+# YouTube Whisper Setup Script for Mac/Linux
 # This script sets up the complete environment for audio transcription
 
 echo "========================================"
-echo "Audio Whisper Transcription Setup"
+echo "YouTube Whisper Transcription Setup"
 echo "========================================"
 echo ""
 

@@ -1,4 +1,4 @@
-# Audio Whisper Transcription
+# YouTube Whisper Transcription
 
 Transcribe audio files and YouTube videos using OpenAI's Whisper API with automatic subtitle generation.
 
@@ -14,13 +14,42 @@ Before you begin, you'll need:
 2. **FFmpeg** - Required for audio processing
 3. **OpenAI API Key** - Required for transcription
 
-## Installation
+## Quick Setup (Recommended)
+
+Use the provided setup scripts for automatic installation:
+
+### Windows
+```cmd
+setup.bat
+```
+
+### Mac/Linux
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+These scripts will:
+- Check for Python and FFmpeg
+- Create a virtual environment
+- Install all dependencies
+- Help configure your OpenAI API key
+- Create necessary directories
+- Generate a run script for easy launching
+
+After setup, run the application with:
+- **Windows**: `run.bat`
+- **Mac/Linux**: `./run.sh`
+
+## Manual Installation
+
+If you prefer to set up manually or the scripts don't work for your system:
 
 ### Step 1: Clone or Download
 
 ```bash
-git clone https://github.com/yourusername/audio-whisper.git
-cd audio-whisper
+git clone https://github.com/yourusername/youtube-whisper.git
+cd youtube-whisper
 ```
 
 Or download and extract the ZIP file.
@@ -299,7 +328,7 @@ data/
 ## File Structure
 
 ```
-audio-whisper/
+youtube-whisper/
 ├── app.py              # Main application
 ├── requirements.txt    # Python dependencies
 ├── README.md          # This file

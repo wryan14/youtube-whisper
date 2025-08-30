@@ -1,9 +1,9 @@
 @echo off
-REM Audio Whisper Setup Script for Windows
+REM YouTube Whisper Setup Script for Windows
 REM This script sets up the complete environment for audio transcription
 
 echo ========================================
-echo Audio Whisper Transcription Setup
+echo YouTube Whisper Transcription Setup
 echo ========================================
 echo.
 

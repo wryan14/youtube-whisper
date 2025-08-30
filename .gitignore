@@ -205,3 +205,19 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+*.mp3
+*.mp4
+*.wav
+__pycache__/
+*.pyc
+.env
+.DS_Store
+
+# Data directories - keep .gitkeep files but ignore all other content
+data/audio/*
+!data/audio/.gitkeep
+data/subtitles/*
+!data/subtitles/.gitkeep
+data/transcripts/*
+!data/transcripts/.gitkeep

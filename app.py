@@ -74,12 +74,12 @@ HTML_TEMPLATE = """
             background: #64748b; 
             color: white; 
             padding: 8px 24px; 
-            border: none; 
+            border: 1px solid #64748b; 
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
         }
-        button:hover { background: #475569; }
+        button:hover { background: #475569; border-color: #475569; }
         button:disabled { opacity: 0.5; cursor: not-allowed; }
         .checkbox-container { display: flex; align-items: center; margin-bottom: 16px; }
         .checkbox-container input { width: auto; margin-right: 8px; margin-bottom: 0; }
@@ -96,8 +96,26 @@ HTML_TEMPLATE = """
             text-decoration: none;
             margin-bottom: 8px;
             font-size: 14px;
+            border-left: 3px solid #9ca3af;
+            transition: all 0.2s ease;
+            position: relative;
         }
-        .download-links a:hover { background: #e5e7eb; }
+        .download-links a:hover { 
+            background: #e5e7eb; 
+            border-left-color: #4b5563;
+            padding-left: 16px;
+        }
+        .download-links a::before {
+            content: "↓";
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+        .download-links a:hover::before {
+            left: 4px;
+            opacity: 0.5;
+        }
         #log { 
             background: #f3f4f6; 
             padding: 16px; 
@@ -170,7 +188,7 @@ HTML_TEMPLATE = """
                 <div class="info-box">
                     <h3>Video Information</h3>
                     <p>ID: <span id="video-id"></span></p>
-                    <p>Time: <span id="processing-time"></span>s</p>
+                    <p>Processing: <span id="processing-time"></span>s</p>
                     <p>Segments: <span id="segment-count"></span></p>
                 </div>
                 
@@ -184,6 +202,15 @@ HTML_TEMPLATE = """
             
             <label>Transcript Preview</label>
             <div id="transcript-preview"></div>
+        </div>
+        
+        <div class="card">
+            <label>Clear Data</label>
+            <div style="display: flex; gap: 12px; align-items: center;">
+                <button onclick="clearData(false)" style="background: #9ca3af; border-color: #9ca3af;">Clear Transcripts</button>
+                <button onclick="clearData(true)" style="background: #6b7280; border-color: #6b7280;">Clear All (Including Audio)</button>
+                <span id="clear-status" style="font-size: 14px; color: #6b7280; margin-left: 12px;"></span>
+            </div>
         </div>
         
         <div class="card">
@@ -322,6 +349,34 @@ HTML_TEMPLATE = """
             document.getElementById('srt-link').href = `/download/${fileId}/srt`;
             
             document.getElementById('results').style.display = 'block';
+        }
+        
+        async function clearData(clearAudio) {
+            const statusEl = document.getElementById('clear-status');
+            statusEl.textContent = 'Clearing...';
+            
+            try {
+                const response = await fetch('/clear-data', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({clear_audio: clearAudio})
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    statusEl.textContent = data.message;
+                    log(data.message);
+                    setTimeout(() => {
+                        statusEl.textContent = '';
+                    }, 3000);
+                } else {
+                    statusEl.textContent = 'Error: ' + data.error;
+                    log('Clear failed: ' + data.error);
+                }
+            } catch (error) {
+                statusEl.textContent = 'Error: ' + error.message;
+                log('Clear error: ' + error.message);
+            }
         }
         
         // Clear log on load
@@ -645,6 +700,48 @@ def download(file_id, file_type):
         as_attachment=True,
         download_name=f"{file_id}.{file_type}"
     )
+
+@app.route('/clear-data', methods=['POST'])
+def clear_data():
+    """Clear all transcripts and optionally audio files."""
+    try:
+        data = request.get_json()
+        clear_audio = data.get('clear_audio', False)
+        
+        # Count files before clearing
+        transcript_count = 0
+        subtitle_count = 0
+        audio_count = 0
+        
+        # Clear transcripts
+        for file in TRANSCRIPT_DIR.glob('*'):
+            if file.name != '.gitkeep':
+                file.unlink()
+                transcript_count += 1
+        
+        # Clear subtitles
+        for file in SUBTITLE_DIR.glob('*'):
+            if file.name != '.gitkeep':
+                file.unlink()
+                subtitle_count += 1
+        
+        # Clear audio if requested
+        if clear_audio:
+            for file in AUDIO_DIR.glob('*'):
+                if file.name != '.gitkeep':
+                    file.unlink()
+                    audio_count += 1
+        
+        message = f"Cleared {transcript_count} transcripts, {subtitle_count} subtitles"
+        if clear_audio:
+            message += f", {audio_count} audio files"
+        
+        logger.info(message)
+        return jsonify({'success': True, 'message': message})
+    
+    except Exception as e:
+        logger.error(f"Clear error: {e}")
+        return jsonify({'success': False, 'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=False, port=5000)

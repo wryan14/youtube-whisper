@@ -92,7 +92,7 @@ ffmpeg -version
 **If not installed:**
 
 **Windows:**
-1. Download from [ffmpeg.org](https://ffmpeg.org/download.html)
+1. Download from [ffmpeg.org ↗](https://ffmpeg.org/download.html)
 2. Extract the ZIP to `C:\ffmpeg`
 3. Add `C:\ffmpeg\bin` to your system PATH:
    - Right-click "This PC" → Properties → Advanced System Settings
@@ -100,7 +100,7 @@ ffmpeg -version
    - Under "System Variables", find "Path", click Edit
    - Add `C:\ffmpeg\bin`
    - Click OK and restart your terminal
-   - Detailed guide: [FFmpeg Windows Installation](https://www.wikihow.com/Install-FFmpeg-on-Windows)
+   - Detailed guide: [FFmpeg Windows Installation ↗](https://www.wikihow.com/Install-FFmpeg-on-Windows)
 
 **Mac:**
 ```bash
@@ -114,19 +114,19 @@ sudo apt update
 sudo apt install ffmpeg
 ```
 
-For other systems, see [FFmpeg Download Page](https://ffmpeg.org/download.html)
+For other systems, see [FFmpeg Download Page ↗](https://ffmpeg.org/download.html)
 
 ### Step 4: Set Up OpenAI API Key
 
 You need an API key from OpenAI to use the Whisper transcription service.
 
 **Get your API key:**
-1. Go to [OpenAI API Keys](https://platform.openai.com/api-keys)
+1. Go to [OpenAI API Keys ↗](https://platform.openai.com/api-keys)
 2. Sign in or create an account (requires payment method)
 3. Click "Create new secret key"
 4. Copy the key that starts with `sk-`
 5. Save it somewhere safe - you won't see it again
-6. See [OpenAI API Quickstart](https://platform.openai.com/docs/quickstart) for detailed setup
+6. See [OpenAI API Quickstart ↗](https://platform.openai.com/docs/quickstart) for detailed setup
 
 **Set the API key in your environment:**
 
@@ -210,12 +210,12 @@ For age-restricted, private, or member-only YouTube videos, you need to provide 
 1. **Install a browser extension for cookie export:**
    
    **Recommended (exports directly in Netscape format):**
-   - Chrome/Edge: [Get cookies.txt LOCALLY](https://chrome.google.com/webstore/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc) - Open source, safe alternative
-   - Firefox: [cookies.txt](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/)
+   - Chrome/Edge: [Get cookies.txt LOCALLY ↗](https://chrome.google.com/webstore/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc) - Open source, safe alternative
+   - Firefox: [cookies.txt ↗](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/)
    
    **Alternative options:**
-   - [Cookie-Editor](https://chrome.google.com/webstore/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) - Works on Chrome, Firefox, Edge (select Netscape export format)
-   - [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg) - Exports in JSON format (requires conversion)
+   - [Cookie-Editor ↗](https://chrome.google.com/webstore/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm) - Works on Chrome, Firefox, Edge (select Netscape export format)
+   - [EditThisCookie ↗](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg) - Exports in JSON format (requires conversion)
 
 2. **Export your YouTube cookies:**
    - Go to YouTube.com and sign in to your account
@@ -242,7 +242,7 @@ For age-restricted, private, or member-only YouTube videos, you need to provide 
 - They expire when you log out of YouTube
 - If videos stop working, export fresh cookies
 - Never share your cookies file with others
-- Cookie format requirements: See [yt-dlp cookie documentation](https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp)
+- Cookie format requirements: See [yt-dlp cookie documentation ↗](https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp)
   - Must be in Netscape format (first line: `# Netscape HTTP Cookie File`)
   - Some extensions export JSON format which needs conversion
 
@@ -274,10 +274,10 @@ flowchart TD
 ## API Costs
 
 OpenAI charges for Whisper API usage:
-- **Current pricing**: See [OpenAI API Pricing](https://openai.com/api/pricing/) (Audio models section)
+- **Current pricing**: See [OpenAI API Pricing ↗](https://openai.com/api/pricing/) (Audio models section)
 - At time of writing: $0.006 per minute of audio
 - Example: A 1-hour video costs ~$0.36, a 10-minute video costs ~$0.06
-- You can set spending limits in your [OpenAI account dashboard](https://platform.openai.com/account/limits)
+- You can set spending limits in your [OpenAI account dashboard ↗](https://platform.openai.com/account/limits)
 
 ## Output Files
 
@@ -285,7 +285,7 @@ The application generates three file types:
 
 - **JSON** - Complete transcript with timestamp data for each segment
 - **TXT** - Plain text transcript without timestamps  
-- **SRT** - Subtitle file compatible with video editors and players ([SRT format spec](https://en.wikipedia.org/wiki/SubRip))
+- **SRT** - Subtitle file compatible with video editors and players ([SRT format spec ↗](https://en.wikipedia.org/wiki/SubRip))
 
 Files are saved in:
 ```
@@ -348,8 +348,8 @@ youtube-whisper/
 
 ## Additional Resources
 
-- [OpenAI Whisper API Documentation](https://platform.openai.com/docs/guides/speech-to-text)
-- [yt-dlp Documentation](https://github.com/yt-dlp/yt-dlp#readme)
-- [yt-dlp Cookie FAQ](https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp)
-- [FFmpeg Documentation](https://ffmpeg.org/documentation.html)
-- [Netscape Cookie File Format](http://fileformats.archiveteam.org/wiki/Netscape_cookies.txt)
+- [OpenAI Whisper API Documentation ↗](https://platform.openai.com/docs/guides/speech-to-text)
+- [yt-dlp Documentation ↗](https://github.com/yt-dlp/yt-dlp#readme)
+- [yt-dlp Cookie FAQ ↗](https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp)
+- [FFmpeg Documentation ↗](https://ffmpeg.org/documentation.html)
+- [Netscape Cookie File Format ↗](http://fileformats.archiveteam.org/wiki/Netscape_cookies.txt)

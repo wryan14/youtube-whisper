@@ -436,19 +436,23 @@ def split_audio(audio_file, chunk_duration_seconds=600):
     audio = AudioSegment.from_file(audio_file)
     total_duration = len(audio) / 1000
     num_chunks = math.ceil(total_duration / chunk_duration_seconds)
-    
+
     logger.info(f"Splitting into {num_chunks} chunks")
-    
+
+    # Get base path without extension
+    audio_path = Path(audio_file)
+    base_path = audio_path.parent / audio_path.stem
+
     chunk_files = []
     for i in range(num_chunks):
         start_ms = i * chunk_duration_seconds * 1000
         end_ms = min((i + 1) * chunk_duration_seconds * 1000, len(audio))
-        
+
         chunk = audio[start_ms:end_ms]
-        chunk_file = audio_file.replace('.mp3', f'_chunk_{i+1}.mp3')
+        chunk_file = str(base_path) + f'_chunk_{i+1}.mp3'
         chunk.export(chunk_file, format="mp3")
         chunk_files.append(chunk_file)
-        
+
     return chunk_files
 
 def transcribe_audio(audio_file, language="en"):

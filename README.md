@@ -1,3 +1,5 @@
+> **Archived 2026-09-07.** This Flask prototype was superseded by the private repo [wryan14/whisper](https://github.com/wryan14/whisper) (FastAPI + FastMCP, deployed on the homelab at whisper.100.88.138.53.sslip.io). Kept for history only.
+
 # YouTube Whisper Transcription
 
 Transcribe audio files and YouTube videos using OpenAI's Whisper API with automatic subtitle generation.
